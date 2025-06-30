@@ -3,7 +3,7 @@ import os from "os";
 
 export const countConnect = () => {
   const numConnections = mongoose.connections.length;
-  console.log("🚀 ~ countConnect ~ numConnections:", numConnections);
+  // console.log("🚀 ~ countConnect ~ numConnections:", numConnections);
 };
 
 export const checkOverLoad = () => {
