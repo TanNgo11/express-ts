@@ -18,4 +18,22 @@ instanceMongodb;
 
 app.use("/", router);
 
+//handling error
+app.use((req, res, next) => {
+  const error = new Error("Not Found") as Error & { status?: number };
+  error.status = 404;
+  console.log("🚀 ~ app.use ~ error:", error);
+  next(error);
+});
+
+// General Error Handler middleware
+app.use((error, req, res, next) => {
+  const statusCode = error.status || 500;
+  return res.status(statusCode).json({
+    status: "error",
+    code: statusCode,
+    message: error.message || "Internal Server Error",
+  });
+});
+
 export default app;
